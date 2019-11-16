@@ -6,7 +6,7 @@ module.exports = function(app) {
     try {
       const dbExamples = await db.Example.findAll({});
       res.render("index", {
-        msg: "Welcome!",
+        msg: "RepoMaster",
         examples: dbExamples
       });
     } catch (error) {
