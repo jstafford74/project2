@@ -1,7 +1,7 @@
-// Creating table structure for main API data pull
+//Creating table structured for saved repos
 
 module.exports = function(sequelize, DataTypes) {
-  var Repomaster = sequelize.define("FoundRepo", {
+  var ReposSaved = sequelize.define("SavedRepo", {
     appId: DataTypes.BIGINT,
     htmlUrl: DataTypes.STRING,
     description: DataTypes.STRING,
@@ -13,7 +13,10 @@ module.exports = function(sequelize, DataTypes) {
     ownerId: DataTypes.BIGINT,
     ownerLogin: DataTypes.STRING,
     ownerAvatarUrl: DataTypes.STRING,
-    ownerUrl: DataTypes.STRING
+    ownerUrl: DataTypes.STRING,
+    userComments: DataTypes.STRING,
+    dateSaved: DataTypes.DATE,
+    saverId: DataTypes.BIGINT
   });
-  return Repomaster;
+  return ReposSaved;
 };
