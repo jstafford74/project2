@@ -1,3 +1,5 @@
+//Creating table structured for saved repos
+
 module.exports = function(sequelize, DataTypes) {
   var ReposSaved = sequelize.define("SavedRepo", {
     appId: DataTypes.BIGINT,

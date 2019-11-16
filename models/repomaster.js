@@ -1,3 +1,5 @@
+// Creating table structure for main API data pull
+
 module.exports = function(sequelize, DataTypes) {
   var Repomaster = sequelize.define("FoundRepo", {
     appId: DataTypes.BIGINT,
