@@ -9,7 +9,6 @@ const sizes = [];
 const langs = [];
 const homes = [];
 
-
 function iterAte(response) {
   var length = response.data.items.length;
   var itms = response.data.items;
