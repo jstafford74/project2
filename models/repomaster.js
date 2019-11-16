@@ -1,17 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
   var Repomaster = sequelize.define("Repomaster", {
-    app_id: DataTypes.BIGINT,
-    html_url: DataTypes.STRING,
+    appId: DataTypes.BIGINT,
+    htmlUrl: DataTypes.STRING,
     description: DataTypes.STRING,
-    updated_at: DataTypes.DATEONLY,
-    created_at: DataTypes.DATEONLY,
+    updatedAt: DataTypes.DATEONLY,
+    createdAt: DataTypes.DATEONLY,
     language: DataTypes.STRING,
-    forks_count: DataTypes.SMALLINT,
+    forksCount: DataTypes.SMALLINT,
     score: DataTypes.FLOAT,
-    owner_id: DataTypes.BIGINT,
-    owner_login: DataTypes.STRING,
-    owner_avatar_url: DataTypes.STRING,
-    owner_url: DataTypes.STRING,
+    ownerId: DataTypes.BIGINT,
+    ownerLogin: DataTypes.STRING,
+    ownerAvatarUrl: DataTypes.STRING,
+    ownerUrl: DataTypes.STRING,
   });
   return Repomaster;
 };
