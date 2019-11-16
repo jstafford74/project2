@@ -40,11 +40,13 @@ async function callApi() {
 
       }
       else {
-         let apiQuery ="https://api.github.com/search/repositories?q=" + projkey + "&page=" + j + "; rel='next'";
+        let apiQuery ="https://api.github.com/search/repositories?q=" + projkey + "&page=" + j + "; rel='next'";
         ans = await axios.get(apiQuery);
       }
       iterAte(ans);
-    } catch (error) { console.log(error); }
+    } catch (error) { 
+      console.log(error); 
+    }
   }
 }
 
