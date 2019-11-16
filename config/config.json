@@ -1,15 +1,11 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "repomaster_db",
-    "host": "localhost",
-    "dialect": "mysql"
+    "use_env_variable": "DB_URL"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "repomaster_db",
+    "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false

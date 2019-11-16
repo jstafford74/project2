@@ -1,8 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Repomaster = sequelize.define("Repomaster", {
-    text: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    id: DataTypes.BIGINT,
+    app_id: DataTypes.BIGINT,
     html_url: DataTypes.STRING,
     description: DataTypes.STRING,
     updated_at: DataTypes.DATEONLY,
