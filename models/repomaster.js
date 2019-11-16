@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
     ownerId: DataTypes.BIGINT,
     ownerLogin: DataTypes.STRING,
     ownerAvatarUrl: DataTypes.STRING,
-    ownerUrl: DataTypes.STRING,
+    ownerUrl: DataTypes.STRING
   });
   return Repomaster;
 };
