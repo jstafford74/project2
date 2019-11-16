@@ -46,7 +46,7 @@ async function callApi() {
         ans = await axios.get("https://api.github.com/search/repositories?q=" + projkey + "&page=" + j + "; rel='next'");
       }
       iterAte(ans);
-    } catch (error) { console.log(error) }
+    } catch (error) { console.log(error); }
   }
 
 };
