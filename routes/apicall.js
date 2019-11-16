@@ -33,15 +33,15 @@ async function callApi() {
     let ans;
     try {
       if (j === 1) {
-        ans = await axios.get("https://api.github.com/search/repositories?
-                              q=" + projkey + "&page=" + j);
+        let apiQuery = "https://api.github.com/search/repositories?q=" + projkey + "&page=" + j;
+        ans = await axios.get(apiQuery);
         // var tcount = response.total_count;
         // $(".total_count").text("# Repos: " + tcount);
 
       }
       else {
-        ans = await axios.get("https://api.github.com/search/repositories?
-                              q=" + projkey + "&page=" + j + "; rel='next'");
+         let apiQuery ="https://api.github.com/search/repositories?q=" + projkey + "&page=" + j + "; rel='next'";
+        ans = await axios.get(apiQuery);
       }
       iterAte(ans);
     } catch (error) { console.log(error); }
