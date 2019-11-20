@@ -4,10 +4,10 @@ module.exports = function(app) {
   // Load index page
   app.get("/", async (req, res) => {
     try {
-      const dbExamples = await db.Example.findAll({});
+      // const dbExamples = await db.Example.findAll({});
       res.render("index", {
-        msg: "RepoMaster",
-        examples: dbExamples
+        msg: "RepoMaster"
+        // examples: dbExamples
       });
     } catch (error) {
       res
@@ -17,13 +17,13 @@ module.exports = function(app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/example/:id", async (req, res) => {
+  app.get("/result/:id", async (req, res) => {
     try {
-      const dbExample = await db.Example.findOne({
+      const dbResult = await db.repomaster_db.findOne({
         where: { id: req.params.id }
       });
-      res.render("example", {
-        example: dbExample
+      res.render("result", {
+        result: dbResult
       });
     } catch (error) {
       res
