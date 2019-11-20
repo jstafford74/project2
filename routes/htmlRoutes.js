@@ -4,10 +4,10 @@ module.exports = function(app) {
   // Load index page
   app.get("/", async (req, res) => {
     try {
-      const dbExamples = await db.Example.findAll({});
+      // const dbExamples = await db.Example.findAll({});
       res.render("index", {
-        msg: "RepoMaster",
-        examples: dbExamples
+        msg: "RepoMaster"
+        // examples: dbExamples
       });
     } catch (error) {
       res

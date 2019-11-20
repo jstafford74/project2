@@ -4,6 +4,16 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
+var $submitProject = $("#submit-project")
+  .val()
+  .trim();
+var $submitTopic = $("#submit-topic")
+  .val()
+  .trim();
+
+$submitProject = $submitProject.replace(/\s+/g, "").toLowerCase();
+$submitTopic = $submitProject.replace(/\s+/g, "").toLowerCase();
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function(example) {
