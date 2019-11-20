@@ -4,23 +4,20 @@ require("dotenv").config();
 // contructor for repo object
 
 function Repo(login, score, cDate, uDate, size, lang, home) {
-  this.login = login,
-    this.score = score,
-    this.cDate = cDate,
-    this.uDate = uDate,
-    this.size = size,
-    this.lang = lang,
-    this.home = home
+  this.login = login;
+  this.score = score;
+  this.cDate = cDate;
+  this.uDate = uDate;
+  this.size = size;
+  this.lang = lang;
+  this.home = home;
 }
-
 
 // var proj key = ${search-term}
 const projkey = "Giftastic";
 
 var axios = require("axios");
 
-
-const loggers = [];
 const logRepos = [];
 
 function repoIterate(response) {
@@ -35,13 +32,12 @@ function repoIterate(response) {
       itms[i].size,
       itms[i].language,
       itms[i].homepage
-    )
+    );
     logRepos.push(varname);
   }
 
   return logRepos;
-};
-
+}
 
 //--------------- async function to search Repos by project name ----------------//
 async function callApi() {
@@ -51,19 +47,22 @@ async function callApi() {
     let ans;
 
     try {
-      let repoSearchURL = "https://api.github.com/search/repositories?q=" + projkey + "&page=" + j;
+      let repoSearchURL =
+        "https://api.github.com/search/repositories?q=" +
+        projkey +
+        "&page=" +
+        j;
       if (j == 1) {
         ans = await axios.get(repoSearchURL);
-      }
-      else {
+      } else {
         let pager = repoSearchURL + "; rel='next'";
         ans = await axios.get(pager);
       }
       repoIterate(ans);
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) { console.log(error) }
   }
-
 
   try {
     for (var k = 0; k < logRepos.length; k++) {
@@ -72,13 +71,13 @@ async function callApi() {
       ans = await axios.get("https://api.github.com/users/" + usr);
       console.log("Data: " + ans);
 
-      logRepos[k].public_repos = ans.data.public_repos;
+      logRepos[k].publicRepos = ans.data.public_repos;
       logRepos[k].followers = ans.data.followers;
-      logRepos[k].user_create_date = ans.data.created_at;
-      logRepos[k].user_last_update = ans.data.updated_at;
+      logRepos[k].userCreateDate = ans.data.created_at;
+      logRepos[k].userLastUpdate = ans.data.updated_at;
     }
   } catch (error) {
-    console.log('Error in loggers');
+    console.log("Error in loggers");
   }
 }
 callApi();
