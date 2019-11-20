@@ -52,7 +52,7 @@ async function callApi() {
         projkey +
         "&page=" +
         j;
-      if (j == 1) {
+      if (j === 1) {
         ans = await axios.get(repoSearchURL);
       } else {
         let pager = repoSearchURL + "; rel='next'";
