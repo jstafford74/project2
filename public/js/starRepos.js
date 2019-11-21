@@ -1,87 +1,99 @@
+// Get references to page elements
+// var $exampleText = $("#repo-text");
+// var $exampleDescription = $("#repo-description");
 var $starRepo = $(".star");
+// var $exampleList = $("#repo-list");
 
-$starRepo.on("click", function(event) {
-  // event.preventDefault();
-  const id = $(this).data('id');
-  const newStarred = $(this).data('newstarred');
-  console.log('newStarred: ', newStarred);
-});
+// The API object contains methods for each kind of request we'll make
+var API = {
+  starRepo: function(repo) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/repos",
+      data: JSON.stringify(repo)
+    });
+  },
+  getRepos: function() {
+    return $.ajax({
+      url: "api/repos",
+      type: "GET"
+    });
+  },
+  unstarRepo: function(id) {
+    return $.ajax({
+      url: "api/repos/" + id,
+      type: "DELETE"
+    });
+  }
+};
 
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
-  $('.star').on('click', function(event) {
-    console.log('Star button clicked!');
+// refreshRepos gets new repos from the db and repopulates the list
+var refreshRepos = function() {
+  API.getRepos().then(function(data) {
+    var $repos = data.map(function(repo) {
+      var $a = $("<a>")
+        .text(repo.text)
+        .attr("href", "/repo/" + repo.id);
 
-    const id = $(this).data('id');
-    const newStarred = $(this).data('newstarred');
-    console.log('newStarred: ', newStarred);
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": repo.id
+        })
+        .append($a);
 
-    const newStarredState = {
-      starred: newStarred,
-      appId: id
-      // htmlUrl: url,
-      // description: DataTypes.STRING,
-      // updatedAt: DataTypes.DATEONLY,
-      // createdAt: DataTypes.DATEONLY,
-      // language: DataTypes.STRING,
-      // forksCount: DataTypes.SMALLINT,
-      // score: DataTypes.FLOAT,
-      // ownerId: DataTypes.BIGINT,
-      // ownerLogin: DataTypes.STRING,
-      // ownerAvatarUrl: DataTypes.STRING,
-      // ownerUrl: DataTypes.STRING,
-      // userComments: DataTypes.STRING,
-      // dateSaved: DataTypes.DATE,
-      // saverId: DataTypes.BIGINT
-    };
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
 
-    // Send the PUT request.
-    $.ajax('/api/repos/' + id, {
-      type: 'PUT',
-      data: newStarredState,
-    }).then(
-        function() {
-          console.log('changed starred to', newStarred);
-          // Reload the page to get the updated list
-          location.reload();
-        },
-    );
+      $li.append($button);
+
+      return $li;
+    });
+
+    $exampleList.empty();
+    $exampleList.append($repos);
+  });
+};
+
+// handleFormSubmit is called whenever we submit a new repo
+// Save the new repo to the db and refresh the list
+var handleFormSubmit = function(event) {
+  event.preventDefault();
+
+  var repo = {
+    text: $exampleText.val().trim(),
+    description: $exampleDescription.val().trim()
+  };
+
+  if (!(repo.text && repo.description)) {
+    alert("You must enter an repo text and description!");
+    return;
+  }
+
+  API.starRepo(repo).then(function() {
+    refreshRepos();
   });
 
-  $('.unstar-repo').on('click', function(event) {
-    const id = $(this).data('id');
+  $exampleText.val("");
+  $exampleDescription.val("");
+};
 
-    // Send the DELETE request.
-    $.ajax('/api/repos/' + id, {
-      type: 'DELETE',
-    }).then(
-        function() {
-          console.log('UNSTARRED repo #' + id);
-          // Reload the page to get the updated list
-          location.reload();
-        },
-    );
+// handleDeleteBtnClick is called when an repo's delete button is clicked
+// Remove the repo from the db and refresh the list
+var handleDeleteBtnClick = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.unstarRepo(idToDelete).then(function() {
+    refreshRepos();
   });
+};
 
-  $('.create-form').on('submit', function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-
-    const newStar = {
-      name: $('#ca').val().trim(),
-      eaten: 0
-    };
-
-    // Send the POST request.
-    $.ajax('/api/repos', {
-      type: 'POST',
-      data: newStar,
-    }).then(
-        function() {
-          console.log('Starred new repo');
-          // Reload the page to get the updated list
-          location.reload();
-        },
-    );
-  });
-});
+// Add event listeners to the submit and delete buttons
+$submitBtn.on("click", handleFormSubmit);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);
