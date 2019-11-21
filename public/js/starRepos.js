@@ -1,11 +1,38 @@
+var $starRepo = $(".star");
+
+$starRepo.on("click", function(event) {
+  // event.preventDefault();
+  const id = $(this).data('id');
+  const newStarred = $(this).data('newstarred');
+  console.log('newStarred: ', newStarred);
+});
+
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
   $('.star').on('click', function(event) {
+    console.log('Star button clicked!');
+
     const id = $(this).data('id');
     const newStarred = $(this).data('newstarred');
+    console.log('newStarred: ', newStarred);
 
     const newStarredState = {
       starred: newStarred,
+      appId: id
+      // htmlUrl: url,
+      // description: DataTypes.STRING,
+      // updatedAt: DataTypes.DATEONLY,
+      // createdAt: DataTypes.DATEONLY,
+      // language: DataTypes.STRING,
+      // forksCount: DataTypes.SMALLINT,
+      // score: DataTypes.FLOAT,
+      // ownerId: DataTypes.BIGINT,
+      // ownerLogin: DataTypes.STRING,
+      // ownerAvatarUrl: DataTypes.STRING,
+      // ownerUrl: DataTypes.STRING,
+      // userComments: DataTypes.STRING,
+      // dateSaved: DataTypes.DATE,
+      // saverId: DataTypes.BIGINT
     };
 
     // Send the PUT request.

@@ -28,6 +28,7 @@ require("./routes/htmlRoutes")(app);
 //NJIB added, to map into reposController.js
 const routes = require('./routes/reposController.js');
 app.use(routes);
+// End of NJIB code inserted
 
 var syncOptions = { force: false };
 
