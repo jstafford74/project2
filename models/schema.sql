@@ -1,5 +1,4 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+DROP DATABASE IF EXISTS repomaster_db;
+CREATE DATABASE repomaster_db;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+
