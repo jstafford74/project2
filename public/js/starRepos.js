@@ -6,7 +6,7 @@ var $repoList = $("#repo-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  starRepo: function (repo) {
+  starRepo: function(repo) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -16,13 +16,13 @@ var API = {
       data: JSON.stringify(repo)
     });
   },
-  getRepos: function () {
+  getRepos: function() {
     return $.ajax({
       url: "api/repos",
       type: "GET"
     });
   },
-  unstarRepo: function (id) {
+  unstarRepo: function(id) {
     return $.ajax({
       url: "api/repos/" + id,
       type: "DELETE"
@@ -31,9 +31,9 @@ var API = {
 };
 
 // refreshRepos gets new repos from the db and repopulates the list
-var refreshRepos = function () {
-  API.getRepos().then(function (data) {
-    var $repos = data.map(function (repo) {
+var refreshRepos = function() {
+  API.getRepos().then(function(data) {
+    var $repos = data.map(function(repo) {
       var $a = $("<a>")
         .text(repo.text)
         .attr("href", "/repo/" + repo.id);
@@ -61,25 +61,25 @@ var refreshRepos = function () {
 
 // handleStarRepo is called whenever we submit a new repo
 // Save the new repo to the db and refresh the list
-var handleStarRepo = function (event) {
+var handleStarRepo = function(event) {
   event.preventDefault();
-  console.log("Star button clicked!")
+  console.log("Star button clicked!");
 
   var repo = {
-    appId: '1234'
+    appId: "1234"
     //repoName
     //URL
     //Owner
     //Last update
   };
 
-  if (!(repo.id)) {
+  if (!repo.id) {
     // if (!(repo.text && repo.description)) {
     alert("No repo ID logged!");
     return;
   }
 
-  API.starRepo(repo).then(function () {
+  API.starRepo(repo).then(function() {
     refreshRepos();
   });
 
@@ -89,12 +89,12 @@ var handleStarRepo = function (event) {
 
 // handleDeleteBtnClick is called when an repo's delete button is clicked
 // Remove the repo from the db and refresh the list
-var handleUnstarRepo = function () {
+var handleUnstarRepo = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.unstarRepo(idToDelete).then(function () {
+  API.unstarRepo(idToDelete).then(function() {
     refreshRepos();
   });
 };
