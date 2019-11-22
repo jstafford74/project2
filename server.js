@@ -26,7 +26,7 @@ require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 //NJIB added, to map into reposController.js
-require('./routes/reposController.js');
+// require('./routes/reposController.js');
 // End of NJIB code inserted
 
 var syncOptions = { force: false };

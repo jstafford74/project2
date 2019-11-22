@@ -1,12 +1,12 @@
 // Get references to page elements
 // var $exampleText = $("#repo-text");
 // var $exampleDescription = $("#repo-description");
-var $starRepo = $(".star");
+var $starRepo = $("#star");
 // var $exampleList = $("#repo-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  starRepo: function(repo) {
+  starRepo: function (repo) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -16,13 +16,13 @@ var API = {
       data: JSON.stringify(repo)
     });
   },
-  getRepos: function() {
+  getRepos: function () {
     return $.ajax({
       url: "api/repos",
       type: "GET"
     });
   },
-  unstarRepo: function(id) {
+  unstarRepo: function (id) {
     return $.ajax({
       url: "api/repos/" + id,
       type: "DELETE"
@@ -31,9 +31,9 @@ var API = {
 };
 
 // refreshRepos gets new repos from the db and repopulates the list
-var refreshRepos = function() {
-  API.getRepos().then(function(data) {
-    var $repos = data.map(function(repo) {
+var refreshRepos = function () {
+  API.getRepos().then(function (data) {
+    var $repos = data.map(function (repo) {
       var $a = $("<a>")
         .text(repo.text)
         .attr("href", "/repo/" + repo.id);
@@ -59,41 +59,42 @@ var refreshRepos = function() {
   });
 };
 
-// handleFormSubmit is called whenever we submit a new repo
+// handleStarRepo is called whenever we submit a new repo
 // Save the new repo to the db and refresh the list
-var handleFormSubmit = function(event) {
+var handleStarRepo = function (event) {
   event.preventDefault();
+  console.log("Star button clicked!")
 
   var repo = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    appId: '1234'
   };
 
-  if (!(repo.text && repo.description)) {
-    alert("You must enter an repo text and description!");
+  if (!(repo.id)) {
+    // if (!(repo.text && repo.description)) {
+    alert("No repo ID logged!");
     return;
   }
 
-  API.starRepo(repo).then(function() {
+  API.starRepo(repo).then(function () {
     refreshRepos();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  // $exampleText.val("");
+  // $exampleDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an repo's delete button is clicked
 // Remove the repo from the db and refresh the list
-var handleDeleteBtnClick = function() {
+var handleUnstarRepo = function () {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.unstarRepo(idToDelete).then(function() {
+  API.unstarRepo(idToDelete).then(function () {
     refreshRepos();
   });
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$starRepo.on("click", handleStarRepo);
+// $exampleList.on("click", ".delete", handleUnstarRepo);
