@@ -39,7 +39,7 @@ function repoIterate(response) {
 async function callApi() {
   let j = 1;
   //--starting with 2 pages of 30 entries--//
-  for (j = 1; j <= 8; j++) {
+  for (j = 1; j <= 3; j++) {
     let ans;
 
     try {
@@ -79,4 +79,4 @@ async function callApi() {
 }
 
 callApi();
-// module.exports = callApi;
+module.exports = callApi;
