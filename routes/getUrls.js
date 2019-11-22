@@ -40,4 +40,4 @@ function projCreate() {
 
 projCreate();
 console.log(logRepos);
-module.exports = projCreate;
+module.exports = logRepos;
