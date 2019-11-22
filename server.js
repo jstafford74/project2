@@ -26,11 +26,8 @@ app.set("view engine", "handlebars");
 // Routes
 // require("./routes/apicall_new.js");
 require("./routes/getUrls.js");
-// require("./routes/htmlRoutes")(app);
-
-//NJIB added, to map into reposController.js
-// require('./routes/reposController.js');
-// End of NJIB code inserted
+require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
 
 var syncOptions = { force: false };
 
