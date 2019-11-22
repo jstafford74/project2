@@ -1,8 +1,8 @@
 // Get references to page elements
-// var $exampleText = $("#repo-text");
-// var $exampleDescription = $("#repo-description");
+var $repoText = $("#repo-text");
+var $repoDescription = $("#repo-description");
 var $starRepo = $("#star");
-// var $exampleList = $("#repo-list");
+var $repoList = $("#repo-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -54,8 +54,8 @@ var refreshRepos = function () {
       return $li;
     });
 
-    $exampleList.empty();
-    $exampleList.append($repos);
+    $repoList.empty();
+    $repoList.append($repos);
   });
 };
 
@@ -67,6 +67,10 @@ var handleStarRepo = function (event) {
 
   var repo = {
     appId: '1234'
+    //repoName
+    //URL
+    //Owner
+    //Last update
   };
 
   if (!(repo.id)) {
@@ -79,8 +83,8 @@ var handleStarRepo = function (event) {
     refreshRepos();
   });
 
-  // $exampleText.val("");
-  // $exampleDescription.val("");
+  $repoText.val("");
+  $repoDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an repo's delete button is clicked
@@ -97,4 +101,4 @@ var handleUnstarRepo = function () {
 
 // Add event listeners to the submit and delete buttons
 $starRepo.on("click", handleStarRepo);
-// $exampleList.on("click", ".delete", handleUnstarRepo);
+$repoList.on("click", ".delete", handleUnstarRepo);
