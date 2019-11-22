@@ -28,6 +28,10 @@ app.set("view engine", "handlebars");
 require("./routes/getUrls.js");
 // require("./routes/htmlRoutes")(app);
 
+//NJIB added, to map into reposController.js
+// require('./routes/reposController.js');
+// End of NJIB code inserted
+
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true

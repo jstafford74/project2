@@ -1,7 +1,7 @@
 //Creating table structured for saved repos
 
 module.exports = function(sequelize, DataTypes) {
-  var ReposSaved = sequelize.define("SavedRepo", {
+  var Repo = sequelize.define("SavedRepo", {
     appId: DataTypes.BIGINT,
     htmlUrl: DataTypes.STRING,
     description: DataTypes.STRING,
@@ -18,5 +18,5 @@ module.exports = function(sequelize, DataTypes) {
     dateSaved: DataTypes.DATE,
     saverId: DataTypes.BIGINT
   });
-  return ReposSaved;
+  return Repo;
 };
