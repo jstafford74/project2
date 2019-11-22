@@ -2,11 +2,11 @@
 var $starRepo = $(".icon-star-empty");
 var $repoList = $("#repo-list");
 
-var $repoName = $("#repo-name");
-var $repoURL = $("#repo-URL");
-var $repoOwner = $("#repo-owner");
-var $repoLastUpdate = $("#repo-last-update");
-var $repoFollowers = $("#repo-followers");
+// var $repoName = $("#repo-name");
+// var $repoURL = $("#repo-URL");
+// var $repoOwner = $("#repo-owner");
+// var $repoLastUpdate = $("#repo-last-update");
+// var $repoFollowers = $("#repo-followers");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
