@@ -1,3 +1,4 @@
+// var logRepos = require("../../routes/apicall_new.js");
 var $submitProject = $("#submit-project");
 
 $submitProject.on("click", function(event) {
@@ -6,14 +7,5 @@ $submitProject.on("click", function(event) {
     .val()
     .trim();
   console.log(searchitem);
-});
-
-var $submitTopic = $("#submit-topic");
-
-$submitTopic.on("click", function(event) {
-  event.preventDefault();
-  searchitem = $("#search-term")
-    .val()
-    .trim();
-  console.log(searchitem);
+  console.log(logRepos);
 });
