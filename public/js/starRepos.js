@@ -66,11 +66,10 @@ var handleStarRepo = function(event) {
   console.log("Star button clicked!");
 
   var repo = {
-    appId: "1234"
-    //repoName
-    //URL
-    //Owner
-    //Last update
+    appId: "1234",
+    htmlURL: "url",
+    ownerLogin: "owner",
+    updateAt: "last-update"
   };
 
   if (!repo.id) {

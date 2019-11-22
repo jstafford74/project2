@@ -28,7 +28,7 @@ module.exports = function(app) {
     } catch (error) {
       res
         .status(400)
-        .render("400", { error: { name: error.name, msg: error.message } });
+        .render("", { error: { name: error.name, msg: error.message } });
     }
   });
 
