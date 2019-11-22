@@ -69,7 +69,7 @@ var handleStarRepo = function(event) {
   event.preventDefault();
   console.log("Star button clicked!");
 
-  $(".icon-star-empty" ).toggleClass("fas fa-star");
+  $(".icon-star-empty").toggleClass("fas fa-star");
 
   var repo = {
     appId: "99999999999",
