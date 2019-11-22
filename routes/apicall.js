@@ -1,5 +1,6 @@
 // Include the axios npm package (Don't forget to run "npm install axios" in this folder first!)
 require("dotenv").config();
+/*
 var axios = require("axios");
 
 var getUrls = require("./getUrls.js");
@@ -8,7 +9,7 @@ const {
   setIntervalAsync,
   clearIntervalAsync
 } = require("set-interval-async/dynamic");
-
+*/
 async function getCount() {
   const logRepos = getUrls();
   console.log(logRepos);
