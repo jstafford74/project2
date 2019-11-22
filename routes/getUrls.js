@@ -1,12 +1,13 @@
 // Include the axios npm package (Don't forget to run "npm install axios" in this folder first!)
 require("dotenv").config();
+/*
 var axios = require("axios");
 
 const {
   setIntervalAsync,
   clearIntervalAsync
 } = require("set-interval-async/dynamic");
-
+*/
 const projkey = [
   "HW-Wireframe",
   "Basic-Portfolio",
@@ -28,15 +29,15 @@ const projkey = [
   "sequelizedBurger"
 ];
 
-const logRepos2 = [];
+//const logRepos2 = [];
 let baseUrl = "https://api.github.com/search/repositories?q=";
 const searchUrl = [];
-
+/*
 function Repo2(proj, url) {
   this.proj = proj;
   this.url = url;
 }
-
+*/
 function getUrls() {
   projkey.forEach(proj => searchUrl.push(baseUrl + proj));
   console.log(searchUrl);
