@@ -1,48 +1,110 @@
-<div id="home">
-  <div class="container">
+<div id='background'>
 
-    <div class="jumbotron">
-      <h1 class="display-4">
-        <h1 class="text-center">{{msg}}</h1>
-        <p class="lead text-center">Learn confidently.</p>
-        <hr>
-        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod felis id felis
-          accumsan fringilla.</p>
-        <br>
-        <form action="POST">
-          <div class="form-group">
-            <input type="text" id="search-term" class="form-control text-center" aria-describedby="example-text"
-              placeholder="Enter a search term">
-          </div>
-          <div class="text-center">
-            <button id="submit-project" class="btn btn-dark center-block">Search Projects</button>
-            <button id="submit-topic" class="btn btn-dark center-block">Search Topics</button>
-        </form>
+  <div class='row text-center'>
+
+    <div class='col-lg-1'></div>
+
+    <div class='col-lg-10 text-center'>
+      <h1 class='animated wobble'>{{msg}}</h1>
+      <p>{{tagline}}
+      </p>
+    </div>
+
+    <div class='col-lg-1'></div>
+
+  </div>
+
+  <br>
+  <div class='row'>
+
+    <div class='col-lg-1'></div>
+
+    <div class='col-lg-10 text-center'>
+      <form action="POST">
+        <div class="form-group text-center">
+          <input type="text" id="search-term" class="form-control text-center" aria-describedby="example-text"
+            placeholder="Enter a search term">
+        </div>
+        <BR>
+        <div class="text-center">
+          <button id="submit-project" class="btn center-block">Search Projects</button>
+          {{!-- <button id="submit-topic" class="btn btn-dark center-block">Search Topics</button> --}}
+      </form>
+    </div>
+
+    <div class='col-lg-2'></div>
+
+
+  </div>
+
+</div>
+
+
+<div id='results'>
+
+  <br>
+  <br>
+  <div class='row'>
+
+    <div class='col-lg-1'></div>
+
+    <div class='col-lg-10'>
+      <table class="table table-hover text-center">
+        <thead>
+          <tr>
+            <th scope="col">Repo Name</th>
+            <th scope="col">URL</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Last Update Date</th>
+            <th scope="col">Followers</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">giftastic</th>
+            <td>www.giftastic.com</td>
+            <td>jstaff</td>
+            <td>11/1/2020</td>
+            <td>500</td>
+            <td>
+              <i class="icon-star-empty"></i>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Giftastic</th>
+            <td>www.giftastic.com</td>
+            <td>nbuck</td>
+            <td>12/1/1998</td>
+            <td>500</td>
+            <td>
+              <i class="icon-star-empty"></i>
+            </td>
+
+          </tr>
+          <tr>
+            <th scope="row">giftastic</th>
+            <td>www.giftastic.com</td>
+            <td>ivorrr</td>
+            <td>12/1/1998</td>
+            <td>500</td>
+            <td>
+              <i class="fas fa-star"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+      <div class='col-lg-1'></div>
+
     </div>
   </div>
 
-  {{!-- NJIB inserted temporary test button --}}
-  <div>
-    {{!-- <button class="star">**Star button**</button> --}}
-    <button id="star">**Star button**</button>
-  </div>
-  {{!-- End of NJIB temporary code --}}
 
-
-  <div id="results">
-    {{#if showresults}}
-    <h3>Results:</h3>
-    <ul id="results-list" class="list-group">
-      {{#each results}}
-      <li data-id="{{this.id}}" class="list-group-item">
-        <a href="result/{{this.id}}">{{this.text}}</a>
-      </li>
-      {{/each}}
-      {{/if}}
-    </ul>
-  </div>
-</div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script src="/js/starRepos.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/5808fccdcc.js" crossorigin="anonymous"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/starRepos.js"></script>
