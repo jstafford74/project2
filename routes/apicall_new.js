@@ -1,9 +1,9 @@
 // Include the axios npm package (Don't forget to run "npm install axios" in this folder first!)
 require("dotenv").config();
+// var logRepos = require("./getUrls.js");
 var axios = require("axios");
 const projkey = "giftastic";
 const logRepos = [];
-
 //contructor for repo object
 
 function Repo(login, score, cDate, uDate, size, lang, home) {
@@ -59,24 +59,23 @@ async function callApi() {
       console.log(error);
     }
   }
-
-  try {
-    for (var k = 0; k < logRepos.length; k++) {
-      let usr = logRepos[k].login;
-      console.log("User = " + usr);
-      ans = await axios.get("https://api.github.com/users/" + usr);
-      console.log("Data: " + ans);
-
-      logRepos[k].publicRepos = ans.data.public_repos;
-      logRepos[k].followers = ans.data.followers;
-      logRepos[k].userCreateDate = ans.data.created_at;
-      logRepos[k].userLastUpdate = ans.data.updated_at;
-    }
-  } catch (error) {
-    console.log("Error in loggers: " + error);
-  }
-  console.log(logRepos.length);
+  console.log(logRepos);
 }
+//   try {
+//     for (var k = 0; k < logRepos.length; k++) {
+//       let usr = logRepos[k].login;
+//       ans = await axios.get("https://api.github.com/users/" + usr);
+
+//       logRepos[k].publicRepos = ans.data.public_repos;
+//       logRepos[k].followers = ans.data.followers;
+//       logRepos[k].userCreateDate = ans.data.created_at;
+//       logRepos[k].userLastUpdate = ans.data.updated_at;
+//     }
+//   } catch (error) {
+//     console.log("Error in loggers: " + error);
+//   }
+//   console.log(logRepos.length);
+// }
 
 callApi();
-module.exports = callApi;
+// module.exports = logRepos;
