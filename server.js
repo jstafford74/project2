@@ -4,6 +4,8 @@ var exphbs = require("express-handlebars");
 
 var db = require("./models");
 
+// var repoMaster = require("./routes");
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -22,8 +24,13 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+// require("./routes/apicall_new.js");
+require("./routes/getUrls.js");
+// require("./routes/htmlRoutes")(app);
+
+//NJIB added, to map into reposController.js
+// require('./routes/reposController.js');
+// End of NJIB code inserted
 
 var syncOptions = { force: false };
 
