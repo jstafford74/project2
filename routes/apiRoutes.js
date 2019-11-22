@@ -25,7 +25,9 @@ module.exports = function(app) {
   // Delete an example by id
   app.delete("/api/repos/:id", async (req, res) => {
     try {
-      const result = await db.SavedRepo.destroy({ where: { id: req.params.id } });
+      const result = await db.SavedRepo.destroy({
+        where: { id: req.params.id }
+      });
       const deletedRowCount = result;
       const status = deletedRowCount > 0 ? 200 : 404;
       res.status(status).json({ deletedRowCount });
