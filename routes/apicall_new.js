@@ -30,6 +30,10 @@ function repoIterate(response) {
       itms[i].homepage
     );
     logRepos.push(varname);
+
+    // NJIB inserted to call render function in index.js
+    renderRepoTable(logRepos);
+    // End of NJIB code insert
   }
   //----insert repo data into MySql DB here----//
   return logRepos;

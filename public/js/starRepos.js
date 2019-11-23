@@ -1,5 +1,6 @@
 // Get references to page elements
 var $starRepo = $(".icon-star-empty");
+var $unstarRepo = $(".fas.fa-star");
 var $repoList = $("#repo-list");
 
 // var $repoName = $("#repo-name");
@@ -67,15 +68,25 @@ var refreshRepos = function() {
 // Save the new repo to the db and refresh the list
 var handleStarRepo = function(event) {
   event.preventDefault();
+
+  // $("i").click(function(){
+  //   alert($("i").hasClass(".icon-star-empty"));
+  //   console.log($("i").hasClass(".icon-star-empty"));
+  // });
+
+  //Save the starred repo to the database
   console.log("Star button clicked!");
 
   $(".icon-star-empty").toggleClass("fas fa-star");
+  // $('.fas.fa-star').removeClass("icon-star-empty");
+
+  let rndmAppId = (Math.random() * 1000000);
 
   var repo = {
-    appId: "99999999999",
-    htmlURL: "test_url",
-    ownerLogin: "Ivor",
-    updateAt: "last-updateghlfdhjrfphlfdjljd"
+    appId: rndmAppId,
+    htmlURL: "test2_url",
+    ownerLogin: "Rachael",
+    updateAt: "dfgl'ndfkg,fngkfl"
   };
 
   if (!repo.appId) {
@@ -87,14 +98,15 @@ var handleStarRepo = function(event) {
   API.starRepo(repo).then(function() {
     refreshRepos();
   });
-
-  // $repoText.val("");
-  // $repoDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an repo's delete button is clicked
 // Remove the repo from the db and refresh the list
 var handleUnstarRepo = function() {
+
+  console.log("Unstar button clicked!");
+  $(".fas.fa-star").toggleClass("icon-star-empty");
+
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
@@ -106,4 +118,5 @@ var handleUnstarRepo = function() {
 
 // Add event listeners to the submit and delete buttons
 $starRepo.on("click", handleStarRepo);
+$unstarRepo.on("click", handleUnstarRepo);
 $repoList.on("click", ".delete", handleUnstarRepo);
