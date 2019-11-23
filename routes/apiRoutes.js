@@ -4,8 +4,8 @@ module.exports = function(app) {
   // Get all examples
   app.get("/", async (req, res) => {
     try {
-      const data = await db.Proj.findAll({});
-      res.json(data);
+      const data = await db.proj.findAll({});
+      console.log(data);
     } catch (error) {
       res.status(400).json({ error: { name: error.name, msg: error.message } });
     }

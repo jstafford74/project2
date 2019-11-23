@@ -23,9 +23,19 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Route functions
+// --------------Route functions-----------------//
+// ----------------IMPORTANT---------------------//
+//--------------routes/apicall.js seeds db-------//
+//  Run apicall.js once, then comment out below  //
+
+//  >>>>>  //
+
+// <<<<<  //
+
 require("./routes/apicall.js");
 require("./routes/getUrls.js");
+
+//--ignore this file for now >>>> require("./routes/apicall_new.js");--//
 require("./routes/apiRoutes.js")(app);
 var syncOptions = { force: false };
 
