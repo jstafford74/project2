@@ -60,7 +60,7 @@ function displayResults() {
       $newRow.append(newColumn);
       newColumn = "<td>" + followers + "</td>";
       $newRow.append(newColumn);
-      newColumn = `<td><i id='star-${loop}' onclick='handleStarRepo(event, ${loop})' class='far fa-star'></i></td>`
+      newColumn = `<td><i id='star-${loop}' onclick='handleStarRepo(event, ${loop})' class='far fa-star'></i></td>`;
       $newRow.append(newColumn);
       $("#repo-table").append($newRow);
     }
