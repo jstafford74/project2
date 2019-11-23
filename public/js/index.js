@@ -1,3 +1,5 @@
+// var moment = require('moment');
+
 // var logRepos = require("../../routes/apicall_new.js");
 var $submitProject = $("#submit-project");
 
@@ -31,6 +33,7 @@ function displayResults() {
     method: "GET"
   }).then(function(response) {
     console.log("-----RESULTS-------------");
+
     for (var loop = 0; loop < response.items.length; loop++) {
       var repoName = response.items[loop].name;
       var repoOwner = response.items[loop].owner.login;
@@ -56,7 +59,7 @@ function displayResults() {
       $newRow.append(newColumn);
       newColumn = "<td>" + followers + "</td>";
       $newRow.append(newColumn);
-      newColumn = "<td><i class='icon-star-empty'></i></td>";
+      newColumn = `<td><i id='star-${loop}' onclick='handleStarRepo(event, ${loop})' class='far fa-star'></i></td>`
       $newRow.append(newColumn);
       $("#repo-table").append($newRow);
     }
