@@ -23,7 +23,10 @@ $submitProject.on("click", function(event) {
 
 //Function to Display Search Results//
 function displayResults() {
-  var queryURL = "https://api.github.com/search/repositories?q=" + searchitem;
+  var queryURL =
+    "https://api.github.com/search/repositories?q=" +
+    searchitem +
+    "+sort:stars&forks";
 
   $.ajax({
     url: queryURL,
@@ -34,19 +37,25 @@ function displayResults() {
     for (var loop = 0; loop < response.items.length; loop++) {
       var repoName = response.items[loop].name;
       var repoOwner = response.items[loop].owner.login;
-      var repoURL = response.items[loop].queryURL;
+      var repoURL = response.items[loop].html_url;
       var updateDate = response.items[loop].updated_at;
+      updateDate = updateDate.substring(0, 10);
       var score = response.items[loop].score;
       var followers = response.items[loop].watchers_count;
       var newColumn;
       var $newRow = $("<tr>");
-      newColumn = "<td><a href='" + repoURL + "'>" + repoName + "</a></td>";
+      newColumn =
+        "<td><a href='" +
+        repoURL +
+        "' target='_blank'>" +
+        repoName +
+        "</a></td>";
       $newRow.append(newColumn);
       newColumn = "<td>" + repoOwner + "</td>";
       $newRow.append(newColumn);
       newColumn = "<td>" + updateDate + "</td>";
       $newRow.append(newColumn);
-      newColumn = "<td>" + score + "</td>";
+      newColumn = "<td>" + Math.ceil(score) + "</td>";
       $newRow.append(newColumn);
       newColumn = "<td>" + followers + "</td>";
       $newRow.append(newColumn);
