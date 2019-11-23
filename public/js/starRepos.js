@@ -1,5 +1,5 @@
 // Get references to page elements
-var $starRepo = $(".icon-star-empty");
+var $starRepo = $(".far.fa-star");
 var $unstarRepo = $(".fas.fa-star");
 var $repoList = $("#repo-list");
 
@@ -77,16 +77,16 @@ var handleStarRepo = function(event) {
   //Save the starred repo to the database
   console.log("Star button clicked!");
 
-  $(".icon-star-empty").toggleClass("fas fa-star");
+  $(".far fa-star").toggleClass("fas fa-star");
   // $('.fas.fa-star').removeClass("icon-star-empty");
 
   let rndmAppId = (Math.random() * 1000000);
 
   var repo = {
     appId: rndmAppId,
-    htmlURL: "test2_url",
-    ownerLogin: "Rachael",
-    updateAt: "dfgl'ndfkg,fngkfl"
+    htmlURL: "test3_url",
+    ownerLogin: "Jeremiah",
+    updateAt: "dfhfhgfhgffgjgfjhjgfghgfvcbcb"
   };
 
   if (!repo.appId) {
@@ -105,11 +105,11 @@ var handleStarRepo = function(event) {
 var handleUnstarRepo = function() {
 
   console.log("Unstar button clicked!");
-  $(".fas.fa-star").toggleClass("icon-star-empty");
+  $(".fas fa-star").toggleClass("far fa-star");
 
   var idToDelete = $(this)
     .parent()
-    .attr("data-id");
+    .attr('20');
 
   API.unstarRepo(idToDelete).then(function() {
     refreshRepos();

@@ -1,3 +1,5 @@
+// var moment = require('moment');
+
 // var logRepos = require("../../routes/apicall_new.js");
 var $submitProject = $("#submit-project");
 
@@ -32,6 +34,7 @@ function displayResults() {
     var repoOwner = response.items[0].owner.login;
     var repoURL = response.items[0].queryURL;
     var updateDate = response.items[0].updated_at;
+    // var updateDate = moment(response.items[0].updated_at).format("MMM Do YY");
 
     var resultsdiv = $("<div>");
 
