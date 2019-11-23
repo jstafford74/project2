@@ -1,8 +1,12 @@
 // Get references to page elements
-var $repoText = $("#repo-text");
-var $repoDescription = $("#repo-description");
-var $starRepo = $("#star");
+var $starRepo = $(".icon-star-empty");
 var $repoList = $("#repo-list");
+
+// var $repoName = $("#repo-name");
+// var $repoURL = $("#repo-URL");
+// var $repoOwner = $("#repo-owner");
+// var $repoLastUpdate = $("#repo-last-update");
+// var $repoFollowers = $("#repo-followers");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -65,15 +69,16 @@ var handleStarRepo = function(event) {
   event.preventDefault();
   console.log("Star button clicked!");
 
+  $(".icon-star-empty").toggleClass("fas fa-star");
+
   var repo = {
-    appId: "1234"
-    //repoName
-    //URL
-    //Owner
-    //Last update
+    appId: "99999999999",
+    htmlURL: "test_url",
+    ownerLogin: "Ivor",
+    updateAt: "last-updateghlfdhjrfphlfdjljd"
   };
 
-  if (!repo.id) {
+  if (!repo.appId) {
     // if (!(repo.text && repo.description)) {
     alert("No repo ID logged!");
     return;
@@ -83,8 +88,8 @@ var handleStarRepo = function(event) {
     refreshRepos();
   });
 
-  $repoText.val("");
-  $repoDescription.val("");
+  // $repoText.val("");
+  // $repoDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an repo's delete button is clicked
