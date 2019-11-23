@@ -1,82 +1,85 @@
 // Include the axios npm package (Don't forget to run "npm install axios" in this folder first!)
 require("dotenv").config();
+var db = require("../models");
 var axios = require("axios");
-const projkey = "giftastic";
-const logRepos = [];
-
-//contructor for repo object
-
-function Repo(login, score, cDate, uDate, size, lang, home) {
-  this.login = login;
-  this.score = score;
-  this.cDate = cDate;
-  this.uDate = uDate;
-  this.size = size;
-  this.lang = lang;
-  this.home = home;
-}
+var logRepos = require("./apicall.js");
 
 function repoIterate(response) {
   var length = response.data.items.length;
   var itms = response.data.items;
   for (var i = 0; i < length; i++) {
-    let varname = new Repo(
-      itms[i].owner.login,
-      itms[i].score,
-      itms[i].created_at,
-      itms[i].updated_at,
-      itms[i].size,
-      itms[i].language,
-      itms[i].homepage
-    );
-    logRepos.push(varname);
+    logRepos[i].projkey.login = itms[i].owner.login;
+    logRepos[i].projkey.name = itms[i].name;
+    logRepos[i].projkey.score = itms[i].score;
+    logRepos[i].projkey.createDate = itms[i].created_at;
+    logRepos[i].projkey.lastUpdate = itms[i].updated_at;
+    logRepos[i].projkey.size = itms[i].size;
+    logRepos[i].projkey.lang = itms[i].language;
+    logRepos[i].projkey.forksCount = itms[i].forks;
+    logRepos[i].projkey.homepage = itms[i].homepage;
   }
-  //----insert repo data into MySql DB here----//
-  return logRepos;
+  console.log(`Repos: ${logRepos}`);
 }
 
 //--------------- async function to search Repos by project name ----------------//
-async function callApi() {
-  let j = 1;
-  //--starting with 2 pages of 30 entries--//
-  for (j = 1; j <= 3; j++) {
-    let ans;
-
-    try {
-      let repoSearchURL =
-        "https://api.github.com/search/repositories?q=" +
-        projkey +
-        "&page=" +
-        j;
-      if (j === 1) {
-        ans = await axios.get(repoSearchURL);
-      } else {
-        let pager = repoSearchURL + "; rel='next'";
-        ans = await axios.get(pager);
-      }
-      repoIterate(ans);
-    } catch (error) {
-      console.log(error);
-    }
+let repoCount = 0;
+async function getRepos() {
+  if (repoCount === logRepos.length) {
+    db.Repos.bulkCreate(logRepos);
+    return;
   }
 
-  try {
-    for (var k = 0; k < logRepos.length; k++) {
-      let usr = logRepos[k].login;
-      console.log("User = " + usr);
-      ans = await axios.get("https://api.github.com/users/" + usr);
-      console.log("Data: " + ans);
-
-      logRepos[k].publicRepos = ans.data.public_repos;
-      logRepos[k].followers = ans.data.followers;
-      logRepos[k].userCreateDate = ans.data.created_at;
-      logRepos[k].userLastUpdate = ans.data.updated_at;
+  for (var j = 0; j <= parseInt(logRepos[repoCount].totalCount / 30); j++) {
+    let repoSearchURL = logRepos[repoCount].searchUrl + "&page=" + j;
+    if (j === 1) {
+      ans = await axios.get(repoSearchURL);
+    } else {
+      let pager = repoSearchURL + "; rel='next'";
+      ans = await axios.get(pager);
     }
-  } catch (error) {
-    console.log("Error in loggers: " + error);
+    repoIterate(ans);
+    repoCount++;
+    setTimeout(getRepos, 8000);
   }
-  console.log(logRepos.length);
 }
 
-callApi();
-module.exports = callApi;
+db.sequelize.sync().then(getRepos);
+
+// let loggerCount = 0;
+// async function getLoggers() {
+//   if (loggerCount == logRepos.length) {
+//     return;
+//   }
+//   let usr = logRepos[loggerCount].login;
+//   const ans = await axios.get(loggerUrl + usr);
+//   logRepos[loggerCount].publicRepos = ans.data.public_repos;
+//   logRepos[loggerCount].followers = ans.data.followers;
+//   logRepos[loggerCount].userCreateDate = ans.data.created_at;
+//   logRepos[loggerCount].userLastUpdate = ans.data.updated_at;
+
+//   console.log(`Logger Count: ${loggerCount},
+//           ${logRepos[callCount].projkey}: ${logRepos[loggerCount].publicRepos},
+//           ${logRepos[loggerCount].followers},${logRepos[loggerCount].followers},${logRepos[loggerCount].publicRepos},`);
+//   callCount++;
+//   setTimeout(getCount, 8000);
+
+// try {
+//   for (var k = 0; k < logRepos.length; k++) {
+//     let usr = logRepos[k].login;
+//     console.log("User = " + usr);
+//     ans = await axios.get("https://api.github.com/users/" + usr);
+//     console.log("Data: " + ans);
+
+//     logRepos[k].publicRepos = ans.data.public_repos;
+//     logRepos[k].followers = ans.data.followers;
+//     logRepos[k].userCreateDate = ans.data.created_at;
+//     logRepos[k].userLastUpdate = ans.data.updated_at;
+//   }
+// } catch (error) {
+//   console.log("Error in loggers: " + error);
+// }
+// console.log(logRepos.length);
+// }
+
+// callApi();
+// module.exports = logRepos;

@@ -23,11 +23,10 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Routes
-// require("./routes/apicall_new.js");
+// Route functions
+require("./routes/apicall.js");
 require("./routes/getUrls.js");
-// require("./routes/htmlRoutes")(app);
-
+require("./routes/apiRoutes.js")(app);
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true

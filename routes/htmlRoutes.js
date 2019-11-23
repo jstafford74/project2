@@ -4,11 +4,8 @@ module.exports = function(app) {
   // Load index page
   app.get("/", async (req, res) => {
     try {
-      // const dbExamples = await db.Example.findAll({});
-      res.render("index", {
-        msg: "RepoMaster"
-        // examples: dbExamples
-      });
+      const data = await db.Proj.findAll({});
+      res.render("index", proj, data);
     } catch (error) {
       res
         .status(400)

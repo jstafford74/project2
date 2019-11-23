@@ -2,9 +2,9 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/examples", async (req, res) => {
+  app.get("/", async (req, res) => {
     try {
-      const data = await db.Example.findAll({});
+      const data = await db.Proj.findAll({});
       res.json(data);
     } catch (error) {
       res.status(400).json({ error: { name: error.name, msg: error.message } });
