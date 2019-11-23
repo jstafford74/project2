@@ -5,7 +5,7 @@ module.exports = function(app) {
   app.get("/", async (req, res) => {
     try {
       const data = await db.Proj.findAll({});
-      res.render("index", data);
+      // res.render("index", data);
     } catch (error) {
       res
         .status(400)

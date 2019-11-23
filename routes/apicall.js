@@ -12,16 +12,15 @@ async function getCount() {
     return;
   }
 
-  console.log(logRepos);
   const ans = await axios.get(logRepos[callCount].searchUrl);
   logRepos[callCount].totalCount = ans.data.total_count;
 
   console.log(`Call Count: ${callCount},
           ${logRepos[callCount].projkey}: ${logRepos[callCount].totalCount}`);
   callCount++;
-  setTimeout(getCount, 8100);
+  setTimeout(getCount, 6100);
 }
 
 // db.sequelize.sync().then(getCount);
 
-module.export = getCount;
+module.export = getCount();

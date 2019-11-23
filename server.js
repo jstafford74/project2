@@ -31,9 +31,8 @@ app.set("view engine", "handlebars");
 //  >>>>>  //
 
 // <<<<<  //
-
-require("./routes/apicall.js");
 require("./routes/getUrls.js");
+require("./routes/apicall.js");
 
 //--ignore this file for now >>>> require("./routes/apicall_new.js");--//
 require("./routes/apiRoutes.js")(app);
