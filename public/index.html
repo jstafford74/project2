@@ -77,15 +77,15 @@
         <table class="table table-hover text-center" id="repo-table">
           <thead>
             <tr>
-              <th scope="col">Repo Name</th>
-              <th scope="col">Owner</th>
-              <th scope="col">Last Update Date</th>
-              <th scope="col">Score</th>
-              <th scope="col">Followers</th>
+              <th onclick="sortTable(0)" scope="col">Repo Name</th>
+              <th onclick="sortTable(1)" scope="col">Owner</th>
+              <th onclick="sortTable(2)" scope="col">Last Update Date</th>
+              <th onclick="sortTable(3)" scope="col">Score</th>
+              <th onclick="sortTable(4)" scope="col">Followers</th>
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="repo-body">
 
           </tbody>
         </table>
