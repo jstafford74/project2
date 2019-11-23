@@ -31,4 +31,44 @@ function renderRepoTable(logRepos) {
   // Append the new row to the table
   $("#repo-table > tbody").append(newRow);
 };
-// End of NJIB code
+
+
+  //Input Validation//
+  if (searchitem === "") {
+    var inputError = $("<p>")
+      .addClass("text-white")
+      .text("Please enter a search term");
+    $("#inputError").html(inputError);
+  }
+
+  displayResults();
+});
+
+function displayResults() {
+  var queryURL = "https://api.github.com/search/repositories?q=" + searchitem;
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log("-----RESULTS-------------");
+    var repoName = response.items[0].name;
+    var repoOwner = response.items[0].owner.login;
+    var repoURL = response.items[0].queryURL;
+    var updateDate = response.items[0].updated_at;
+
+    var resultsdiv = $("<div>");
+
+    var pRepo = $("<h2>").append("name: " + repoName);
+    var pOwner = $("<h2>").append("owner: " + repoOwner);
+    var pRepoURL = $("<h2>").append("url: " + repoURL);
+    var pUpdateDate = $("<h2>").append("url: " + updateDate);
+
+    resultsdiv.append(pRepo);
+    resultsdiv.append(pOwner);
+    resultsdiv.append(pRepoURL);
+    resultsdiv.append(pUpdateDate);
+
+    $("#resultstest").append(resultsdiv);
+  });
+}
