@@ -1,6 +1,8 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var moment = require("moment");
+
 
 var db = require("./models");
 
@@ -32,7 +34,8 @@ app.set("view engine", "handlebars");
 
 // <<<<<  //
 require("./routes/getUrls.js");
-require("./routes/apicall.js");
+require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app);
 
 //--ignore this file for now >>>> require("./routes/apicall_new.js");--//
 require("./routes/apiRoutes.js")(app);

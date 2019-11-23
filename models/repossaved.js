@@ -1,0 +1,22 @@
+//Creating table structured for saved repos
+
+module.exports = function(sequelize, DataTypes) {
+  var Repo = sequelize.define("SavedRepo", {
+    appId: DataTypes.BIGINT,
+    htmlUrl: DataTypes.STRING,
+    description: DataTypes.STRING,
+    // updatedAt: DataTypes.DATEONLY,
+    createdAt: DataTypes.DATEONLY,
+    // language: DataTypes.STRING,
+    // forksCount: DataTypes.SMALLINT,
+    // score: DataTypes.FLOAT,
+    // ownerId: DataTypes.BIGINT,
+    ownerLogin: DataTypes.STRING,
+    // ownerAvatarUrl: DataTypes.STRING,
+    // ownerUrl: DataTypes.STRING,
+    // userComments: DataTypes.STRING,
+    // dateSaved: DataTypes.DATE,
+    saverId: DataTypes.BIGINT
+  });
+  return Repo;
+};

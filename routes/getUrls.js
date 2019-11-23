@@ -26,8 +26,7 @@ const searchUrl = [];
 const logRepos = [];
 
 function projCreate() {
-  projkey.forEach(it => searchUrl.push(baseUrl + it));
-
+  projkey.forEach(proj => searchUrl.push(baseUrl + proj));
   for (i = 0; i < projkey.length; i++) {
     logRepos.push({ projkey: projkey[i], searchUrl: searchUrl[i] });
   }
@@ -35,4 +34,6 @@ function projCreate() {
   return logRepos;
 }
 
-module.exports = projCreate();
+projCreate();
+console.log(logRepos);
+module.exports = logRepos;
