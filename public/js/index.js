@@ -1,6 +1,3 @@
-// var moment = require('moment');
-
-// var logRepos = require("../../routes/apicall_new.js");
 var $submitProject = $("#submit-project");
 
 $submitProject.on("click", function(event) {
@@ -17,7 +14,6 @@ $submitProject.on("click", function(event) {
       .text("Please enter a search term");
     $("#inputError").html(inputError);
   }
-
   displayResults(searchitem);
 });
 
