@@ -13,8 +13,10 @@ $submitProject.on("click", function(event) {
       .addClass("text-white")
       .text("Please enter a search term");
     $("#inputError").html(inputError);
+  } else {
+    $("#inputError").html(" ");
+    displayResults(searchitem);
   }
-  displayResults(searchitem);
 });
 
 //Function to Display Search Results//
