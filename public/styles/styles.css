@@ -17,6 +17,10 @@ p {
   margin-bottom: 25px;
 }
 
+#retrieve-repos{
+  margin-bottom: 25px;
+}
+
 #results {
   background-color: white;
 }
