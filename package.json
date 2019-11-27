@@ -20,7 +20,8 @@
     "moment": "^2.24.0",
     "mysql2": "^2.0.0",
     "sequelize": "^5.21.2",
-    "set-interval-async": "1.0.29"
+    "set-interval-async": "1.0.29",
+    "util": "^0.12.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
