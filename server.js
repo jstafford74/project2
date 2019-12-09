@@ -32,13 +32,17 @@ app.set("view engine", "handlebars");
 //  >>>>>  //
 
 // <<<<<  //
-require("./routes/getUrls.js");
-require("./routes/apicall.js");
+// require("./routes/timer.js");
+// require("./routes/getUrls.js");
+// require("./routes/apicall.js");
 require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
-
+// Render 404 page for any unmatched routes
+app.get("*", async (req, res) => {
+  res.render("404");
+});
 //--ignore this file for now >>>> require("./routes/apicall_new.js");--//
-require("./routes/apiRoutes.js")(app);
+// require("./routes/apiRoutes.js")(app);
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true

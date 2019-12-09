@@ -17,6 +17,10 @@ module.exports = function(app) {
     res.sendFile(path.join("public", "index.html"));
   });
 
+  // app.get("/api/projs", function(req, res) {
+  //   res.sendFile(path.join("public", "BootcampSearch.html"));
+  // });
+
   // // Load example page and pass in an example by id
   // app.get("/result/:id", async (req, res) => {
   //   try {
@@ -32,9 +36,4 @@ module.exports = function(app) {
   //       .render("400", { error: { name: error.name, msg: error.message } });
   //   }
   // });
-
-  // Render 404 page for any unmatched routes
-  app.get("*", async (req, res) => {
-    res.render("404");
-  });
 };
