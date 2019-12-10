@@ -33,8 +33,6 @@ app.set("view engine", "handlebars");
 
 // <<<<<  //
 // require("./routes/timer.js");
-// require("./routes/getUrls.js");
-// require("./routes/apicall.js");
 require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
 // Render 404 page for any unmatched routes
